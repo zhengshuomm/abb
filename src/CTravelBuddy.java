@@ -59,9 +59,12 @@ public class CTravelBuddy {
                 res.add(new Buddy(friend, similarity));
             }
         }
-        Collections.sort(res, (o1, o2) -> {
-            return Double.compare(o2.similarity, o1.similarity);
+        Collections.sort(res, new Comparator<Buddy>(){
+        	public int compare(Buddy o1, Buddy o2) {
+        		return Double.compare(o2.similarity, o1.similarity);
+        	}
         });
+        		
         return res;
     }
 

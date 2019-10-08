@@ -76,8 +76,8 @@ public class ASki {
         this.rewardMap = new HashMap<>();
         this.scoreMap = new HashMap<>();
         for (List<String> path : paths) {
-            pathMap.putIfAbsent(path.get(0), new HashMap<>());
-            pathMap.putIfAbsent(path.get(1), new HashMap<>());
+            pathMap.putIfAbsent(path.get(0), new HashMap<String, Integer>());
+            pathMap.putIfAbsent(path.get(1), new HashMap<String, Integer>());
             pathMap.get(path.get(0)).put(path.get(1), Integer.parseInt(path.get(2)));
         }
         for (List<String> point : rewards) {

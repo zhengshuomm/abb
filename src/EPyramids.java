@@ -28,7 +28,7 @@ public class EPyramids {
         Map<String, List<String>> map = new HashMap<>();
         for (String str : allowed) {
             String key = str.substring(0,2);
-            map.putIfAbsent(key, new ArrayList<>());
+            map.putIfAbsent(key, new ArrayList<String>());
             map.get(key).add(str.substring(2));
         }
         return dfs(map, bottom);

@@ -29,7 +29,7 @@ public class DBankSystem {
     }
 
     public void deposit(int id, int amount, long timestamp) {
-        account.putIfAbsent(id, new TreeMap<>());
+        account.putIfAbsent(id, new TreeMap<Long, Integer>());
         if (account.get(id).isEmpty()) {
             account.get(id).put(0L, 0);
         }
@@ -87,7 +87,7 @@ class BankSystemV2 {
     }
 
     public void deposit(int id, int amount, long timestamp) {
-        account.putIfAbsent(id, new ArrayList<>());
+        account.putIfAbsent(id, new ArrayList<State>());
         List<State> list = account.get(id);
         if (list.isEmpty()) {
             list.add(new State(0L, 0));

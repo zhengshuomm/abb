@@ -19,8 +19,8 @@ class Test {
 
         List<List<Integer>> list = new ArrayList<>();
         list.add(new ArrayList<>(Arrays.asList(1,2,3)));
-        list.add(new ArrayList<>());
-        list.add(new ArrayList<>());
+        list.add(new ArrayList<Integer>());
+        list.add(new ArrayList<Integer>());
         list.add(new ArrayList<>(Arrays.asList(1,null,2)));
         BListIterator iter = new BListIterator(list);
         while (iter.hasNext()) {

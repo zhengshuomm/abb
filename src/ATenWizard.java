@@ -42,7 +42,7 @@ public class ATenWizard {
         };
         List<List<Integer>> wizardList = new ArrayList<>();
         for (int i = 0; i < wizards.length; i++) {
-            wizardList.add(new ArrayList<>());
+            wizardList.add(new ArrayList<Integer>());
             for (int j = 0; j < wizards[i].length; j++) {
                 wizardList.get(i).add(wizards[i][j]);
             }
@@ -55,9 +55,11 @@ public class ATenWizard {
         int[] minCost = new int[wizards.size()];  // the min cost for each wizard so far
         Arrays.fill(minCost, Integer.MAX_VALUE);
         minCost[from] = 0;
-        Queue<Wizard> pq = new PriorityQueue<>((o1, o2) -> {
-            return Integer.compare(o1.cost, o2.cost);
-        });
+        Queue<Wizard> pq = new PriorityQueue<>(1, new Comparator<Wizard>() {
+			public int compare(Wizard o1, Wizard o2) {
+				return o1.cost - o2.cost;
+			}
+		});
         Set<Integer> closed = new HashSet<>();
         pq.offer(new Wizard(from, 0, null));
         while (!pq.isEmpty()) {

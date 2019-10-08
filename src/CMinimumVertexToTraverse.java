@@ -37,8 +37,8 @@ public class CMinimumVertexToTraverse {
     public List<Integer> findMin(int[][] edges) {
         Map<Integer, List<Integer>> map = new HashMap<>();
         for (int[] num : edges) {
-            map.putIfAbsent(num[0], new ArrayList<>());
-            map.putIfAbsent(num[1], new ArrayList<>());
+            map.putIfAbsent(num[0], new ArrayList<Integer>());
+            map.putIfAbsent(num[1], new ArrayList<Integer>());
             map.get(num[0]).add(num[1]);
         }
         Set<Integer> visited = new HashSet<>();
