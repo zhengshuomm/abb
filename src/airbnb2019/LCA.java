@@ -48,7 +48,23 @@ public class LCA {
 		return n.value;
 	}
 	
-	private Node lca(Node node, String a, String b)
+	private Node lca(Node node, String a, String b) {
+		if (node == null) return null;
+		if (node.value.equals(a) || node.value.equals(b)) {
+			return node;
+		} 
+		Node ancestor = null;
+		for (Node n : node.child) {
+			Node c = lca(n, a, b);
+			if (c == null) continue;
+			if (ancestor == null) {
+				ancestor = c;
+			} else {
+				return node;
+			}
+		}
+		return ancestor;
+	}
 	
 	private Node findRootNode() {
 		// suppose the parent already told you
@@ -56,7 +72,6 @@ public class LCA {
 	}
 
 	private  void buildTree(List<List<String>> input) {
-		this.root = new Node(input.get(0).get(0));
 		for (List<String> entry : input) {
 			String parent = entry.get(0);
 			map.putIfAbsent(parent, new Node(parent));
@@ -67,6 +82,7 @@ public class LCA {
 				parentNode.addChild(map.get(child));
 			}
 		}
+		this.root = map.get(input.get(0).get(0));
 	}
 
 	
