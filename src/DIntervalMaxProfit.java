@@ -6,7 +6,15 @@ import java.util.List;
 
 public class DIntervalMaxProfit {
 	public static void main(String[] args) {
-
+		List<List<String>> input = new ArrayList<>();
+		List<String> i1 = Arrays.asList("0-2", "10");
+		List<String> i2 = Arrays.asList("1-3", "20");
+		List<String> i3 = Arrays.asList("2-4", "5");
+		input.add(i1);
+		input.add(i2);
+		input.add(i3);
+		DIntervalMaxProfit i = new DIntervalMaxProfit();
+		System.out.println(i.findMaxProfit(input));
 	}
 
 	public int findMaxProfit(List<List<String>> input) {

@@ -70,7 +70,9 @@ public class MinimumVerticestoTraverseDirectedGraph {
 		for (int i = 0; i < n; i++) {
 			if (!visited.contains(i)) {
 				res.add(i);
-				search(res, nodes, i, i, visited, new HashSet<Integer>());
+				Set<Integer> temp = new HashSet<>();
+				search(res, nodes, i, i, temp);
+				visited.addAll(temp);
 			}
 		}
 		return new ArrayList<>(res);
@@ -78,8 +80,7 @@ public class MinimumVerticestoTraverseDirectedGraph {
 
 	private static void search(Set<Integer> res,
 			Map<Integer, Set<Integer>> nodes, int cur, int start,
-			Set<Integer> visited, Set<Integer> curVisited) {
-		visited.add(cur);
+		 Set<Integer> curVisited) {
 		curVisited.add(cur);
 		for (int next : nodes.get(cur)) {
 			if (res.contains(next) && next != start) {
@@ -87,7 +88,7 @@ public class MinimumVerticestoTraverseDirectedGraph {
 				continue;
 			}
 			if (!curVisited.contains(next)) {
-				search(res, nodes, next, start, visited, curVisited);
+				search(res, nodes, next, start, curVisited);
 			}
 		}
 
