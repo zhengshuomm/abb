@@ -106,7 +106,6 @@ public class ASki {
 		for (Map.Entry<String, Integer> entry : pathMap.get(curr).entrySet()) {
 			String next = entry.getKey();
 			int newScore = score + 2 * rewardMap.get(next) + entry.getValue();
-			;
 			if (newScore <= scoreMap.get(next))
 				continue;
 			scoreMap.put(next, newScore);

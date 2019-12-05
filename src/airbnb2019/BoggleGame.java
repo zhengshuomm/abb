@@ -49,6 +49,7 @@ public class BoggleGame {
 				}
 			}
 			// 没有必要继续搜索其他单词了
+			list.remove(list.size() - 1);
 			visited[i][j] = false;
 			return;
 		}

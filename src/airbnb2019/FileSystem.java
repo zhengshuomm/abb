@@ -6,6 +6,7 @@ import java.util.Map;
 public class FileSystem {
 	public static void main(String args[]) {
 		FileSystem solution = new FileSystem();
+//		solution.create("a", 1);
 		solution.create("/a", 1);
 		System.out.println(solution.get("/a"));
 		solution.create("/a/b", 2);

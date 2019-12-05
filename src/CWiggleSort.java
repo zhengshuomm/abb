@@ -22,57 +22,92 @@ public class CWiggleSort {
     public static void main(String[] args) {
         CWiggleSort sol = new CWiggleSort();
         int[] nums = {100,1,100,1,100,1};
-        sol.sort(nums);
+        sol.wiggleSort(nums);
         for (int i : nums) {
             System.out.print(i + " ");
         }
     }
 
-    public void sort(int[] nums) {
-        int len = nums.length;
-        if (len % 2 == 0) {
-            quickSelect(nums, 0, len - 1, len / 2);
-        } else {
-            quickSelect(nums, 0, len - 1, len / 2 + 1);
-        }
-        int[] temp = new int[len];
-        int leftIndex = (len - 1) / 2 ;
-        int rightIndex = len - 1;
-        int index = 0;
-        while (index < len) {
-            if (index % 2 == 0) {
-                temp[index++] = nums[leftIndex--];
-            } else {
-                temp[index++] = nums[rightIndex--];
-            }
-        }
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] = temp[i];
-        }
-    }
-
-    private void quickSelect(int[] nums, int left, int right, int k) {
-        int pivot = left + (int)(Math.random() * (right - left + 1));
-        swap(nums, pivot, right);
-        int leftIndex = left;
-        for (int i = left; i <= right - 1; i++) {
-            if (nums[i] < nums[right]) {
-                swap(nums, leftIndex++, i);
-            }
-        }
-        swap(nums, leftIndex, right);
-        if (leftIndex + 1 == k) {
+    public void wiggleSort(int[] nums) {
+        if (nums == null || nums.length <= 1) {
             return;
-        } else if (leftIndex + 1 < k) {
-            quickSelect(nums, leftIndex + 1, right, k);
-        } else {
-            quickSelect(nums, left, leftIndex - 1, k);
+        }
+         
+        int n = nums.length;
+         
+        // Step 1: Find median of the array, return the the median
+        int median = findMedian(nums, 0, n - 1, (n + 1) / 2);
+         
+        // Step 2: 3-way sort, put median in the middle, 
+        // numbers less than median on the left, 
+        // numbers greater than median on the right
+        int[] temp = new int[n];
+        int left = 0;
+        int right = n - 1;
+         
+        for (int i = 0; i < n; i++) {
+            if (nums[i] < median) {
+                temp[left] = nums[i];
+                left++;
+            } else if (nums[i] > median) {
+                temp[right] = nums[i];
+                right--;
+            }
+        }
+         
+        // add median into the middle
+        for (int i = left; i <= right; i++) {
+            temp[i] = median;
+        }
+         
+        // Step 3: wiggle sort
+        left = (n - 1) / 2;
+        right = n - 1;
+         
+        for (int i = 0; i < n; i++) {
+            if ((i & 1) == 0) {
+                nums[i] = temp[left];
+                left--;
+            } else {
+                nums[i] = temp[right];
+                right--;
+            }
         }
     }
-
-    private void swap(int[] nums, int left, int right) {
-        int temp = nums[left];
-        nums[left] = nums[right];
-        nums[right] = temp;
+     
+    private int findMedian(int[] nums, int lo, int hi, int k) {
+        // if (lo >= hi) {
+        //     return lo;
+        // }
+         
+        int leftEnd = partition(nums, lo, hi);
+        int leftSize = leftEnd - lo + 1;
+        if (leftSize == k) {
+            return nums[leftEnd];
+        }
+         
+        if (leftSize > k) {
+            return findMedian(nums, lo, leftEnd - 1, k);
+        } else {
+            return findMedian(nums, leftEnd + 1, hi, k - leftSize);
+        }
+    }
+     
+    private int partition(int[] nums, int left, int right) {
+        int index = left;
+        int pivot = nums[right];
+        for (int i = left; i <= right ; i ++){
+            if (nums[i] >= pivot){
+                swap(nums, i, index);
+                index ++;
+            }
+        }
+        return index - 1;
+    }
+     
+    private void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
     }
 }

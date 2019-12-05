@@ -123,7 +123,7 @@ public class ShutBox2 {
 			this.prob = new HashMap<>();
 			this.map =  new HashMap<>();
 			for (int i = 2 ; i <= 12 ; i ++) {
-				map.put(i, new HashMap<>());
+				map.put(i, new HashMap<List<Integer>, Node>());
 			}
 			init();
 		}

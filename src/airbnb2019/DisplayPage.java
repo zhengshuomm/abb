@@ -48,9 +48,9 @@ public class DisplayPage {
 
 		int count = 0;
 		while (!set.isEmpty()) {
-			if (result.isEmpty()) {
-				result.add("");
-			}
+//			if (result.isEmpty()) {
+//				result.add("");
+//			}
 
 			for (Map.Entry<String, Set<String>> entry : map.entrySet()) {
 				if (entry.getValue().size() == 0)

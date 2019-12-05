@@ -92,7 +92,7 @@ class MST {
 				graph[start].neighbors.add(new Edge(finish, cost));
 				graph[finish].neighbors.add(new Edge(start, cost));
 			}
-
+			System.out.println("here");
 			int cost = PrimsAlgorithm(graph, 1);
 
 			if (cost == -1) {

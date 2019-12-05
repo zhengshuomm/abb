@@ -70,17 +70,17 @@ public class ShutBox {
 					return; // gameEnd
 				}
 				List<Integer> oneSolution = possibleSolutions.get(this.rand.nextInt(possibleSolutions.size()));
-				if (isNew) {
-					int min = possibleSolutions.get(0).size();
-					int minIndex = 0;
-					for (int i =  1; i < possibleSolutions.size() ; i ++) {
-						if (possibleSolutions.get(i).size() < min) {
-							min = possibleSolutions.get(i).size();
-							minIndex = i;
-						}
-					}
-					oneSolution = possibleSolutions.get(minIndex);
-				}
+//				if (isNew) {
+//					int min = possibleSolutions.get(0).size();
+//					int minIndex = 0;
+//					for (int i =  1; i < possibleSolutions.size() ; i ++) {
+//						if (possibleSolutions.get(i).size() < min) {
+//							min = possibleSolutions.get(i).size();
+//							minIndex = i;
+//						}
+//					}
+//					oneSolution = possibleSolutions.get(minIndex);
+//				}
 				card.closeCard(oneSolution);
 			}
 		}

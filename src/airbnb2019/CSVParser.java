@@ -41,11 +41,11 @@ public class CSVParser {
 		if (sb.length() > 0) {
 			res.add(sb.toString());
 		}
-//		return String.join("|", res);
-		sb.setLength(0);
-		for (String s : res) {
-			sb.append(s).append("|");
-		}
-		return sb.toString();
+		return String.join("|", res);
+//		sb.setLength(0);
+//		for (String s : res) {
+//			sb.append(s).append("|");
+//		}
+//		return sb.toString();
 	}
 }

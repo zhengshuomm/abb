@@ -58,9 +58,9 @@ public class ListIterator implements Iterator<Integer> {
 
 	@Override
 	public void remove() {
-		if (cur == null && all.hasNext()) {
-			cur  = all.next().iterator();
-		}
+//		if (cur == null && all.hasNext()) {
+//			cur  = all.next().iterator();
+//		}
 		if (cur != null) {
 			cur.remove();
 		}
